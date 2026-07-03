@@ -1,0 +1,14 @@
+{
+  "name": "zimny-detailing",
+  "version": "1.0.0",
+  "description": "Zimny Detailing — premium single-page website with a cinematic scroll experience",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i src/styles.css -o assets/css/styles.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i src/styles.css -o assets/css/styles.css --watch",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
