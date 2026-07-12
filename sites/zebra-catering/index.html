@@ -8,42 +8,47 @@
 <meta property="og:title" content="ZEBRA Catering & Restaurant — gotujemy jak w domu, podajemy jak na święto">
 <meta property="og:description" content="Przyjęcia okolicznościowe i catering z dowozem. Andrespol, Rokicińska 122A. Tel. 603 882 356.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F2EDE3'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='%230A0A0B'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230A0A0B'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='%23F5F1E8'%3EZ%3C/text%3E%3C/svg%3E">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&display=swap');
 
 :root{
-  --wegiel:#101012;
-  --wegiel-2:#16161a;
-  --porcelana:#F2EDE3;
-  --porcelana-60:rgba(242,237,227,.62);
-  --porcelana-40:rgba(242,237,227,.4);
-  --swieca:#E4A94F;
-  --swieca-glow:rgba(228,169,79,.32);
+  --ivory:#F5F1E8;
+  --ivory-deep:#EDE7DA;
+  --card-bg:#FBF8F2;
+  --border:#DCD3C0;
+  --charcoal:#262019;
+  --charcoal-60:rgba(38,32,25,.66);
+  --charcoal-40:rgba(38,32,25,.45);
+  --gold:#A87E2F;
+  --gold-light:#C9A45C;
+  --gold-glow:rgba(168,126,47,.28);
   --zebra-b:#0A0A0B;
   --zebra-w:#FFFFFF;
-  --popiol:#9A968C;
-  --font-display:'Fraunces',Georgia,serif;
-  --font-body:'Instrument Sans',system-ui,sans-serif;
+  --hero-text:#F5F1E8;
+  --hero-text-60:rgba(245,241,232,.68);
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-accent:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Montserrat',system-ui,sans-serif;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--wegiel);
-  color:var(--porcelana);
+  background:var(--ivory);
+  color:var(--charcoal);
   font-family:var(--font-body);
-  font-size:16px;
-  line-height:1.6;
+  font-size:15.5px;
+  line-height:1.65;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-::selection{background:var(--swieca);color:var(--zebra-b)}
+::selection{background:var(--gold);color:var(--zebra-w)}
 img,video{max-width:100%}
 a{color:inherit}
 button{font:inherit;cursor:pointer}
 
-/* ---- Liquid glass (ported 1:1 from house template) ---- */
+/* ---- Liquid glass — tylko na ciemnym hero (house template, 1:1) ---- */
 .liquid-glass{
   background:rgba(255,255,255,0.01);
   background-blend-mode:luminosity;
@@ -65,18 +70,25 @@ button{font:inherit;cursor:pointer}
   pointer-events:none;
 }
 
-/* ---- Signature: zebra hairline stripes ---- */
+/* ---- Karty na jasnych sekcjach (Adriatico: ostre, spokojne) ---- */
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+
+/* ---- Sygnatura: włoskowate pasy zebry ---- */
 .stripes{
   height:12px;
-  background:repeating-linear-gradient(105deg,var(--porcelana) 0 1px,transparent 1px 10px);
-  opacity:.35;
+  background:repeating-linear-gradient(105deg,var(--charcoal) 0 1px,transparent 1px 10px);
+  opacity:.3;
   -webkit-mask:linear-gradient(90deg,transparent,#fff 18%,#fff 82%,transparent);
   mask:linear-gradient(90deg,transparent,#fff 18%,#fff 82%,transparent);
-  background-size:200% 100%;
 }
+.stripes.on-dark{background:repeating-linear-gradient(105deg,var(--zebra-w) 0 1px,transparent 1px 10px);opacity:.35}
 @keyframes stripes-drift{from{background-position:0 0}to{background-position:80px 0}}
 
-/* ---- Hero ---- */
+/* ---- Hero: czarna połowa zebry ---- */
 .hero{
   position:relative;
   min-height:100vh;
@@ -85,6 +97,7 @@ button{font:inherit;cursor:pointer}
   overflow:hidden;
   display:flex;
   flex-direction:column;
+  color:var(--hero-text);
 }
 .hero-video{
   position:absolute;inset:0;
@@ -92,20 +105,20 @@ button{font:inherit;cursor:pointer}
   object-fit:cover;
   transform:translateY(6%) scale(1.02);
   opacity:0;
-  filter:saturate(.92) brightness(.8);
+  filter:grayscale(1) contrast(1.05) brightness(.82);
 }
 .hero-fallback{
   position:absolute;inset:0;
   background:
-    radial-gradient(60% 45% at 50% 78%,rgba(228,169,79,.24),transparent 70%),
-    radial-gradient(45% 35% at 32% 88%,rgba(196,110,42,.18),transparent 70%),
-    linear-gradient(180deg,#0a0a0b 0%,#141210 55%,#1c1610 100%);
+    radial-gradient(60% 45% at 50% 78%,rgba(255,255,255,.13),transparent 70%),
+    radial-gradient(45% 35% at 32% 88%,rgba(255,255,255,.07),transparent 70%),
+    linear-gradient(180deg,#0a0a0b 0%,#131313 55%,#1a1a19 100%);
   animation:ember 9s ease-in-out infinite alternate;
 }
 @keyframes ember{from{opacity:.85}to{opacity:1}}
 .hero-shade{
   position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(6,6,8,.72) 0%,rgba(6,6,8,.35) 42%,rgba(6,6,8,.55) 74%,rgba(6,6,8,.9) 100%);
+  background:linear-gradient(180deg,rgba(5,5,6,.74) 0%,rgba(5,5,6,.36) 42%,rgba(5,5,6,.52) 72%,rgba(5,5,6,.86) 100%);
 }
 
 .nav{position:relative;z-index:20;padding:24px}
@@ -117,51 +130,52 @@ button{font:inherit;cursor:pointer}
 }
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
 .brand-mark{
-  width:36px;height:36px;border-radius:10px;
+  width:36px;height:36px;border-radius:9px;
   background:var(--zebra-w);color:var(--zebra-b);
-  font-family:var(--font-display);font-weight:600;font-size:22px;
+  font-family:var(--font-display);font-weight:600;font-size:21px;
   display:grid;place-items:center;line-height:1;
 }
-.brand-name{font-weight:600;font-size:17px;letter-spacing:.02em}
-.brand-name small{display:block;font-weight:400;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--porcelana-60)}
+.brand-name{font-weight:600;font-size:16px;letter-spacing:.05em}
+.brand-name small{display:block;font-weight:400;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--hero-text-60)}
 .nav-links{display:none;gap:30px;list-style:none}
 .nav-links a{
-  color:var(--porcelana-60);text-decoration:none;font-size:14px;font-weight:500;
-  transition:color .2s;
+  color:var(--hero-text-60);text-decoration:none;font-size:13.5px;font-weight:500;
+  letter-spacing:.04em;transition:color .2s;
 }
-.nav-links a:hover{color:var(--porcelana)}
+.nav-links a:hover{color:var(--hero-text)}
 .nav-tel{
   display:inline-flex;align-items:center;gap:8px;
   border-radius:999px;padding:10px 20px;
-  color:var(--porcelana);text-decoration:none;font-size:14px;font-weight:600;
-  transition:background .2s;
+  color:var(--hero-text);text-decoration:none;font-size:13.5px;font-weight:600;
+  letter-spacing:.03em;transition:background .2s;
 }
-.nav-tel:hover{background:rgba(255,255,255,.05)}
+.nav-tel:hover{background:rgba(255,255,255,.07)}
 
 .hero-content{
   position:relative;z-index:10;flex:1;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:48px 24px;text-align:center;
-  transform:translateY(-4%);
+  transform:translateY(-3%);
 }
 .eyebrow{
-  font-size:12px;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--swieca);font-weight:600;margin-bottom:22px;
+  font-family:var(--font-accent);font-style:italic;font-weight:400;
+  font-size:clamp(1.05rem,1.8vw,1.3rem);letter-spacing:.06em;
+  color:var(--gold-light);margin-bottom:20px;
 }
 h1{
   font-family:var(--font-display);
-  font-weight:400;
-  font-size:clamp(2.5rem,6.4vw,4.75rem);
-  line-height:1.06;
-  letter-spacing:-.01em;
+  font-weight:500;
+  font-size:clamp(2.4rem,6vw,4.4rem);
+  line-height:1.12;
+  letter-spacing:.005em;
   text-wrap:balance;
-  max-width:15ch;
-  margin-bottom:18px;
+  max-width:17ch;
+  margin-bottom:20px;
 }
-h1 em{font-style:italic;color:var(--swieca)}
+h1 em{font-style:italic;font-weight:400;color:var(--gold-light)}
 .hero-sub{
-  color:var(--porcelana-60);font-size:clamp(.95rem,1.4vw,1.05rem);
-  max-width:52ch;margin:0 auto 34px;
+  color:var(--hero-text-60);font-size:clamp(.92rem,1.35vw,1.02rem);
+  max-width:54ch;margin:0 auto 36px;
 }
 .hero-actions{width:100%;max-width:520px;display:flex;flex-direction:column;gap:16px;align-items:center}
 .tel-bar{
@@ -172,182 +186,193 @@ h1 em{font-style:italic;color:var(--swieca)}
   text-decoration:none;
 }
 .tel-bar .tel-label{flex:1;text-align:left;display:flex;flex-direction:column;gap:1px}
-.tel-bar .tel-label span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--porcelana-40)}
-.tel-bar .tel-label strong{font-size:clamp(1.15rem,2.6vw,1.45rem);font-weight:600;letter-spacing:.03em;color:var(--porcelana)}
+.tel-bar .tel-label span{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--hero-text-60);font-weight:500}
+.tel-bar .tel-label strong{font-size:clamp(1.15rem,2.6vw,1.4rem);font-weight:600;letter-spacing:.04em;color:var(--hero-text)}
 .tel-btn{
   flex:none;width:52px;height:52px;border-radius:999px;
-  background:var(--porcelana);color:var(--zebra-b);
+  background:var(--zebra-w);color:var(--zebra-b);
   display:grid;place-items:center;
   transition:transform .2s,box-shadow .3s;
 }
-.tel-bar:hover .tel-btn{transform:scale(1.05);box-shadow:0 0 34px var(--swieca-glow)}
+.tel-bar:hover .tel-btn{transform:scale(1.05);box-shadow:0 0 34px var(--gold-glow)}
 .ghost-btn{
   display:inline-block;border-radius:999px;padding:13px 30px;
-  color:var(--porcelana);font-size:14px;font-weight:500;text-decoration:none;
+  color:var(--hero-text);font-size:13.5px;font-weight:500;letter-spacing:.04em;text-decoration:none;
   transition:background .2s;
 }
-.ghost-btn:hover{background:rgba(255,255,255,.05)}
+.ghost-btn:hover{background:rgba(255,255,255,.07)}
 .hero-proof{
   margin-top:26px;display:inline-flex;align-items:center;gap:10px;
-  font-size:13.5px;color:var(--porcelana-60);
+  font-size:13px;color:var(--hero-text-60);
 }
-.hero-proof .star{color:var(--swieca)}
-.hero-proof strong{color:var(--porcelana)}
+.hero-proof .star{color:var(--gold-light)}
+.hero-proof strong{color:var(--hero-text)}
 .hero-social{
   position:relative;z-index:10;
   display:flex;justify-content:center;gap:16px;padding-bottom:44px;
 }
 .social-btn{
-  width:52px;height:52px;border-radius:999px;
+  width:50px;height:50px;border-radius:999px;
   display:grid;place-items:center;
-  color:var(--porcelana-60);
+  color:var(--hero-text-60);
   transition:color .2s,background .2s;
 }
-.social-btn:hover{color:var(--porcelana);background:rgba(255,255,255,.05)}
+.social-btn:hover{color:var(--hero-text);background:rgba(255,255,255,.07)}
 
-/* ---- Sections ---- */
+/* ---- Jasna połowa zebry ---- */
 section{padding:96px 24px}
 .wrap{max-width:1120px;margin:0 auto}
 .sec-eyebrow{
-  font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--swieca);font-weight:600;margin-bottom:14px;
+  font-family:var(--font-accent);font-style:italic;font-weight:400;
+  font-size:1.15rem;color:var(--gold);margin-bottom:10px;
 }
 h2{
-  font-family:var(--font-display);font-weight:400;
-  font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.12;letter-spacing:-.01em;
-  text-wrap:balance;margin-bottom:16px;
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.16;letter-spacing:.005em;
+  text-wrap:balance;margin-bottom:14px;
 }
-.sec-lead{color:var(--porcelana-60);max-width:58ch}
+.sec-lead{color:var(--charcoal-60);max-width:58ch}
 
 /* pain mirror */
-.mirror{background:var(--wegiel);text-align:center}
+.mirror{background:var(--ivory);text-align:center;padding-top:110px}
 .mirror blockquote{
-  font-family:var(--font-display);font-style:italic;font-weight:400;
-  font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.3;
-  max-width:26ch;margin:0 auto 18px;text-wrap:balance;
+  font-family:var(--font-accent);font-style:italic;font-weight:500;
+  font-size:clamp(1.6rem,3.2vw,2.5rem);line-height:1.32;
+  max-width:30ch;margin:0 auto 20px;text-wrap:balance;
 }
-.mirror p{color:var(--porcelana-60);max-width:52ch;margin:0 auto}
-.mirror p strong{color:var(--swieca);font-weight:600}
+.mirror p{color:var(--charcoal-60);max-width:54ch;margin:0 auto}
+.mirror p strong{color:var(--gold);font-weight:600}
 
-/* offer cards */
-.offer{background:var(--wegiel-2)}
+/* offer */
+.offer{background:var(--ivory-deep)}
 .offer-grid{
   margin-top:52px;display:grid;gap:20px;
   grid-template-columns:1fr;
 }
-.offer-card{border-radius:22px;padding:30px 28px}
+.offer-card{padding:32px 30px}
 .offer-card .icon{
-  width:46px;height:46px;border-radius:14px;margin-bottom:20px;
-  display:grid;place-items:center;color:var(--swieca);
-  background:rgba(228,169,79,.09);
+  width:46px;height:46px;border-radius:999px;margin-bottom:20px;
+  display:grid;place-items:center;color:var(--gold);
+  background:rgba(168,126,47,.1);
 }
-.offer-card h3{font-family:var(--font-display);font-weight:600;font-size:1.3rem;margin-bottom:10px}
-.offer-card ul{list-style:none;margin-top:12px;display:grid;gap:8px}
+.offer-card h3{font-family:var(--font-display);font-weight:600;font-size:1.28rem;margin-bottom:10px}
+.offer-card .desc{color:var(--charcoal-60);font-size:14px}
+.offer-card ul{list-style:none;margin-top:14px;display:grid;gap:8px}
 .offer-card li{
-  color:var(--porcelana-60);font-size:14.5px;
+  color:var(--charcoal-60);font-size:14px;
   padding-left:18px;position:relative;
 }
 .offer-card li::before{
-  content:"";position:absolute;left:0;top:.62em;
-  width:8px;height:2px;background:var(--swieca);
+  content:"";position:absolute;left:0;top:.65em;
+  width:8px;height:2px;background:var(--gold);
 }
 
-/* menu / karta */
+/* karta przyjęć */
 .karta-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
 .karta-grid{margin-top:52px;display:grid;gap:20px;grid-template-columns:1fr}
-.pakiet{border-radius:22px;padding:34px 30px;display:flex;flex-direction:column}
-.pakiet.featured{box-shadow:inset 0 1px 1px rgba(255,255,255,.1),0 0 60px rgba(228,169,79,.07)}
+.pakiet{padding:36px 30px;display:flex;flex-direction:column}
+.pakiet.featured{border-color:var(--gold);box-shadow:0 14px 44px -18px var(--gold-glow)}
 .pakiet-tag{
-  align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--swieca);border:1px solid rgba(228,169,79,.4);border-radius:999px;
+  align-self:flex-start;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold-light);border-radius:999px;
   padding:5px 12px;margin-bottom:18px;
 }
-.pakiet h3{font-family:var(--font-display);font-weight:600;font-size:1.45rem}
+.pakiet h3{font-family:var(--font-display);font-weight:600;font-size:1.4rem}
 .pakiet .cena{
-  font-family:var(--font-display);color:var(--swieca);
+  font-family:var(--font-display);color:var(--gold);
   font-size:2rem;font-weight:600;margin:6px 0 4px;
 }
-.pakiet .cena small{font-size:.9rem;color:var(--porcelana-60);font-family:var(--font-body);font-weight:400}
-.pakiet .opis{color:var(--porcelana-60);font-size:14px;margin-bottom:20px}
+.pakiet .cena small{font-size:.85rem;color:var(--charcoal-60);font-family:var(--font-body);font-weight:400}
+.pakiet .opis{color:var(--charcoal-60);font-size:13.5px;margin-bottom:20px}
 .dania{list-style:none;display:grid;gap:9px;margin-top:auto}
 .dania li{
   display:flex;align-items:baseline;gap:10px;
-  font-size:14.5px;color:var(--porcelana-60);
+  font-size:14px;color:var(--charcoal-60);
 }
 .dania li::after{
   content:"";flex:1;order:2;
-  border-bottom:1px dotted rgba(242,237,227,.22);
+  border-bottom:1px dotted rgba(38,32,25,.3);
   transform:translateY(-3px);
 }
-.dania li span{order:3;color:var(--porcelana);font-size:13px}
-.karta-note{margin-top:26px;font-size:13px;color:var(--popiol)}
+.dania li span{order:3;color:var(--gold);font-size:13px}
+.karta-note{margin-top:26px;font-size:12.5px;color:var(--charcoal-40)}
 
 /* reviews */
-.reviews{background:var(--wegiel-2)}
+.reviews{background:var(--ivory-deep)}
 .rating-plate{
   display:flex;flex-wrap:wrap;align-items:center;gap:26px;
-  border-radius:22px;padding:30px;margin-top:48px;
+  padding:30px;margin-top:48px;
 }
 .rating-num{
   font-family:var(--font-display);font-size:4rem;font-weight:600;line-height:1;
-  color:var(--porcelana);
+  color:var(--charcoal);
 }
 .rating-meta{display:flex;flex-direction:column;gap:6px}
-.stars{color:var(--swieca);letter-spacing:3px;font-size:18px}
-.rating-meta p{color:var(--porcelana-60);font-size:14px}
+.stars{color:var(--gold);letter-spacing:3px;font-size:18px}
+.rating-meta p{color:var(--charcoal-60);font-size:13.5px}
 .review-grid{margin-top:22px;display:grid;gap:20px;grid-template-columns:1fr}
-.review{border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
-.review p{color:var(--porcelana-60);font-size:14.5px;font-style:italic}
+.review{padding:28px;display:flex;flex-direction:column;gap:14px}
+.review p{
+  color:var(--charcoal-60);
+  font-family:var(--font-accent);font-style:italic;
+  font-size:1.1rem;line-height:1.55;
+}
 .review footer{display:flex;align-items:center;gap:12px;margin-top:auto}
 .avatar{
   width:38px;height:38px;border-radius:999px;flex:none;
-  background:var(--porcelana);color:var(--zebra-b);
+  background:var(--zebra-b);color:var(--zebra-w);
   display:grid;place-items:center;font-weight:600;font-size:15px;
 }
-.review footer div strong{display:block;font-size:14px;color:var(--porcelana)}
-.review footer div span{font-size:12px;color:var(--popiol)}
+.review footer div strong{display:block;font-size:13.5px;color:var(--charcoal)}
+.review footer div span{font-size:11.5px;color:var(--charcoal-40)}
 
 /* FAQ */
 .faq-list{margin-top:48px;display:grid;gap:14px;max-width:760px}
-.faq-item{border-radius:18px;overflow:hidden}
+.faq-item{overflow:hidden}
 .faq-item summary{
   list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:20px 24px;font-weight:500;font-size:15.5px;
-  color:var(--porcelana);
+  padding:20px 24px;font-weight:500;font-size:15px;
+  color:var(--charcoal);cursor:pointer;
 }
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary .chev{flex:none;transition:transform .25s;color:var(--swieca)}
+.faq-item summary .chev{flex:none;transition:transform .25s;color:var(--gold)}
 .faq-item[open] summary .chev{transform:rotate(180deg)}
-.faq-item div{padding:0 24px 22px;color:var(--porcelana-60);font-size:14.5px;max-width:60ch}
+.faq-item div{padding:0 24px 22px;color:var(--charcoal-60);font-size:14px;max-width:60ch}
 
-/* contact / footer */
-.contact{background:var(--wegiel-2)}
-.contact-grid{margin-top:48px;display:grid;gap:20px;grid-template-columns:1fr}
-.contact-card{border-radius:22px;padding:28px}
-.contact-card .icon{color:var(--swieca);margin-bottom:14px}
-.contact-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
-.contact-card p{color:var(--porcelana-60);font-size:14.5px}
-.contact-card a{color:var(--porcelana);text-decoration:none}
-.contact-card a:hover{color:var(--swieca)}
-.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+/* kontakt — czarne domknięcie zebry */
+.contact{background:var(--ivory);text-align:center}
+.final-plate{
+  background:var(--zebra-b);color:var(--hero-text);
+  border-radius:14px;padding:64px 28px 58px;position:relative;overflow:hidden;
+}
+.final-plate .sec-eyebrow{color:var(--gold-light)}
+.final-plate h2{color:var(--zebra-w)}
+.final-plate .sec-lead{color:var(--hero-text-60);margin:0 auto}
+.final-plate .tel-bar{max-width:440px;margin:34px auto 0}
+.final-plate .stripes{position:absolute;left:0;right:0;top:22px;margin:0 auto;max-width:520px}
+.contact-grid{margin-top:22px;display:grid;gap:20px;grid-template-columns:1fr;text-align:left}
+.contact-card{padding:28px}
+.contact-card .icon{color:var(--gold);margin-bottom:14px}
+.contact-card h3{font-size:14.5px;font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.contact-card p{color:var(--charcoal-60);font-size:14px}
+.contact-card a{color:var(--charcoal);text-decoration:none}
+.contact-card a:hover{color:var(--gold)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;justify-content:center}
 .badge{
-  border-radius:999px;padding:9px 18px;font-size:13px;color:var(--porcelana-60);
+  border-radius:999px;padding:9px 18px;font-size:12.5px;color:var(--charcoal-60);
+  background:var(--card-bg);border:1px solid var(--border);
 }
 .foot{
-  padding:34px 24px 42px;text-align:center;color:var(--popiol);font-size:12.5px;
+  padding:34px 24px 42px;text-align:center;color:var(--charcoal-40);font-size:12px;
+  background:var(--ivory);
 }
-.foot .wm{margin-top:8px;color:rgba(242,237,227,.32)}
-.foot .wm a{color:inherit}
-
-/* CTA final */
-.final{odd:1;text-align:center}
-.final .tel-bar{max-width:460px;margin:34px auto 0}
+.foot .wm{margin-top:8px;color:rgba(38,32,25,.3)}
 
 /* reveals */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 
-:focus-visible{outline:2px solid var(--swieca);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
 
 @media(max-width:479px){
   .nav-tel span{display:none}
@@ -370,7 +395,7 @@ h2{
 </head>
 <body>
 
-<!-- ================= HERO ================= -->
+<!-- ================= HERO — czarna połowa ================= -->
 <header class="hero" id="top">
   <div class="hero-fallback" aria-hidden="true"></div>
   <video class="hero-video" id="heroVideo" muted playsinline autoplay preload="auto" aria-hidden="true"></video>
@@ -422,13 +447,13 @@ h2{
 
   <div class="hero-social">
     <a class="social-btn liquid-glass" href="#kontakt" aria-label="Facebook — profil ZEBRA (podpięcie przy wdrożeniu)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
     <a class="social-btn liquid-glass" href="#kontakt" aria-label="Instagram — profil ZEBRA (podpięcie przy wdrożeniu)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
     </a>
     <a class="social-btn liquid-glass" id="mapLink" href="https://www.google.com/maps/search/ZEBRA+Catering%26Restaurant+Rokici%C5%84ska+122A+Andrespol" target="_blank" rel="noopener" aria-label="Zobacz ZEBRA w Mapach Google">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
     </a>
   </div>
 </header>
@@ -453,12 +478,12 @@ h2{
     </div>
 
     <div class="offer-grid">
-      <article class="offer-card liquid-glass reveal">
+      <article class="offer-card card reveal">
         <span class="icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
         </span>
         <h3>Przyjęcia okolicznościowe</h3>
-        <p style="color:var(--porcelana-60);font-size:14.5px">Komunie, urodziny, jubileusze, chrzciny i konsolacje — pod klucz, w naszej sali.</p>
+        <p class="desc">Komunie, urodziny, jubileusze, chrzciny i konsolacje — pod klucz, w naszej sali.</p>
         <ul>
           <li>Sala do 60 gości + własny ogródek latem</li><!-- demo-data: pojemność sali do potwierdzenia -->
           <li>Menu ustalane osobiście, bez sztywnych pakietów</li>
@@ -466,12 +491,12 @@ h2{
         </ul>
       </article>
 
-      <article class="offer-card liquid-glass reveal">
+      <article class="offer-card card reveal">
         <span class="icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
         </span>
         <h3>Catering z dowozem</h3>
-        <p style="color:var(--porcelana-60);font-size:14.5px">Biesiadowanie w domowych warunkach — przywozimy gotowe, podane „z fantazją".</p>
+        <p class="desc">Biesiadowanie w domowych warunkach — przywozimy gotowe, podane „z fantazją".</p>
         <ul>
           <li>Półmiski mięs, sałatek i przekąsek</li>
           <li>Dowóz: Andrespol, Łódź i okolice</li><!-- demo-data: zasięg dowozu do potwierdzenia -->
@@ -479,12 +504,12 @@ h2{
         </ul>
       </article>
 
-      <article class="offer-card liquid-glass reveal">
+      <article class="offer-card card reveal">
         <span class="icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
         </span>
         <h3>Obiady na miejscu i na wynos</h3>
-        <p style="color:var(--porcelana-60);font-size:14.5px">Codziennie od 12:00 — domowa kuchnia bez gotowania w domu.</p>
+        <p class="desc">Codziennie od 12:00 — domowa kuchnia bez gotowania w domu.</p>
         <ul>
           <li>Rosół, schabowy, de volaille, kluski śląskie</li>
           <li>Na miejscu · na wynos · z dostawą</li>
@@ -492,12 +517,12 @@ h2{
         </ul>
       </article>
 
-      <article class="offer-card liquid-glass reveal">
+      <article class="offer-card card reveal">
         <span class="icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="2"/><path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6"/><path d="M16 13H3"/><path d="M16 17H3"/></svg>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="2"/><path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6"/><path d="M16 13H3"/><path d="M16 17H3"/></svg>
         </span>
         <h3>Ciasta, torty i desery</h3>
-        <p style="color:var(--porcelana-60);font-size:14.5px">To o nich goście piszą „palce lizać" — pieczone u nas, z dobrych składników.</p>
+        <p class="desc">To o nich goście piszą „palce lizać" — pieczone u nas, z dobrych składników.</p>
         <ul>
           <li>Torty na zamówienie, na każdą okazję</li>
           <li>Ciasta domowe — min. 3 rodzaje na przyjęciu</li>
@@ -521,7 +546,7 @@ h2{
 
     <!-- demo-data: pakiety i ceny przykładowe, do potwierdzenia z klientem -->
     <div class="karta-grid">
-      <article class="pakiet liquid-glass reveal">
+      <article class="pakiet card reveal">
         <span class="pakiet-tag">Obiadowy</span>
         <h3>Domowy</h3>
         <p class="cena">od 95 zł <small>/ osoba</small></p>
@@ -534,7 +559,7 @@ h2{
         </ul>
       </article>
 
-      <article class="pakiet liquid-glass featured reveal">
+      <article class="pakiet card featured reveal">
         <span class="pakiet-tag">Najczęściej wybierany</span>
         <h3>Świąteczny</h3>
         <p class="cena">od 135 zł <small>/ osoba</small></p>
@@ -547,7 +572,7 @@ h2{
         </ul>
       </article>
 
-      <article class="pakiet liquid-glass reveal">
+      <article class="pakiet card reveal">
         <span class="pakiet-tag">Catering</span>
         <h3>Do domu</h3>
         <p class="cena">od 45 zł <small>/ osoba</small></p>
@@ -572,7 +597,7 @@ h2{
       <h2>242 rodziny już nam zaufały</h2>
     </div>
 
-    <div class="rating-plate liquid-glass reveal">
+    <div class="rating-plate card reveal">
       <span class="rating-num">4,6</span>
       <div class="rating-meta">
         <span class="stars" aria-label="Ocena 4,6 na 5">★★★★★</span>
@@ -581,21 +606,21 @@ h2{
     </div>
 
     <div class="review-grid">
-      <article class="review liquid-glass reveal">
+      <article class="review card reveal">
         <p>„Bardzo dobre, domowe jedzenie. Rosół, ziemniaki i kluski śląskie, schabowy, de volaille, schab w sosie. 3 rodzaje ciast — czuć, że z dobrej jakości składników."</p>
         <footer>
           <span class="avatar" aria-hidden="true">M</span>
           <div><strong>Marimat</strong><span>Lokalny przewodnik Google · 78 opinii</span></div>
         </footer>
       </article>
-      <article class="review liquid-glass reveal">
+      <article class="review card reveal">
         <p>„Cudne miejsce na imprezkę! A jeśli ktoś woli biesiadować w domu — catering z ZEBRY najlepszy na świecie. Deserki «palce lizać», tort…"</p>
         <footer>
           <span class="avatar" aria-hidden="true">B</span>
           <div><strong>Bietka</strong><span>Lokalny przewodnik Google · 53 opinie</span></div>
         </footer>
       </article>
-      <article class="review liquid-glass reveal">
+      <article class="review card reveal">
         <p>„Pyszne jedzenie, miła obsługa. Lokal posiada własny ogródek."</p>
         <footer>
           <span class="avatar" aria-hidden="true">K</span>
@@ -614,31 +639,31 @@ h2{
       <h2>Zanim zadzwonisz</h2>
     </div>
     <div class="faq-list">
-      <details class="faq-item liquid-glass reveal">
+      <details class="faq-item card reveal">
         <summary>Z jakim wyprzedzeniem rezerwować termin przyjęcia?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
         <div>Weekendy majowe i komunijne potrafią zapełnić się kilka miesięcy wcześniej. Przy mniejszych przyjęciach często wystarczą 2–3 tygodnie — najpewniej po prostu zadzwonić i zapytać o datę.<!-- demo-data --></div>
       </details>
-      <details class="faq-item liquid-glass reveal">
+      <details class="faq-item card reveal">
         <summary>Dowozicie catering poza Andrespol?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
         <div>Tak — obsługujemy Andrespol, Łódź i okoliczne miejscowości. Przy większych zamówieniach dojedziemy dalej, koszt dowozu ustalamy przy wycenie.<!-- demo-data --></div>
       </details>
-      <details class="faq-item liquid-glass reveal">
+      <details class="faq-item card reveal">
         <summary>Czy przygotujecie menu wegetariańskie albo dla dzieci?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
         <div>Tak. Menu układamy indywidualnie — wersje wegetariańskie, dania dla dzieci i alergie zgłaszasz przy rezerwacji, resztą zajmuje się kuchnia.</div>
       </details>
-      <details class="faq-item liquid-glass reveal">
+      <details class="faq-item card reveal">
         <summary>Ile osób pomieści sala?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
         <div>Komfortowo do ok. 60 gości, a latem dodatkowo własny ogródek. Przy większych uroczystościach zaproponujemy catering na Twoją salę.<!-- demo-data: pojemność do potwierdzenia --></div>
       </details>
-      <details class="faq-item liquid-glass reveal">
+      <details class="faq-item card reveal">
         <summary>W jakich godzinach jesteście otwarci?
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
@@ -648,13 +673,14 @@ h2{
   </div>
 </section>
 
-<!-- ================= KONTAKT / CTA ================= -->
-<section class="contact final" id="kontakt">
+<!-- ================= KONTAKT — czarne domknięcie ================= -->
+<section class="contact" id="kontakt">
   <div class="wrap">
-    <div class="reveal" style="text-align:center">
+    <div class="final-plate reveal">
+      <div class="stripes on-dark" aria-hidden="true"></div>
       <p class="sec-eyebrow">Rezerwacje i wyceny</p>
       <h2>Porozmawiajmy o Twojej okazji</h2>
-      <p class="sec-lead" style="margin:0 auto">Jeden telefon: data, liczba gości, menu — wycena od ręki.</p>
+      <p class="sec-lead">Jeden telefon: data, liczba gości, menu — wycena od ręki.</p>
       <a class="tel-bar liquid-glass" id="footTel" href="tel:+48603882356">
         <span class="tel-label">
           <span>Codziennie od 12:00</span>
@@ -667,17 +693,17 @@ h2{
     </div>
 
     <div class="contact-grid">
-      <div class="contact-card liquid-glass reveal">
+      <div class="contact-card card reveal">
         <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
         <h3>Adres</h3>
         <p><a href="https://www.google.com/maps/search/ZEBRA+Catering%26Restaurant+Rokici%C5%84ska+122A+Andrespol" target="_blank" rel="noopener">Rokicińska 122A<br>95-020 Andrespol</a></p>
       </div>
-      <div class="contact-card liquid-glass reveal">
+      <div class="contact-card card reveal">
         <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <h3>Godziny</h3>
         <p>Codziennie od 12:00<br>Przyjęcia — także poza godzinami</p><!-- demo-data: pełny grafik do potwierdzenia -->
       </div>
-      <div class="contact-card liquid-glass reveal">
+      <div class="contact-card card reveal">
         <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
         <h3>Telefon</h3>
         <p><a href="tel:+48603882356">603 882 356</a><br>Na miejscu · Na wynos · Dostawa</p>
@@ -685,10 +711,10 @@ h2{
     </div>
 
     <div class="badges reveal">
-      <span class="badge liquid-glass">★ 4,6 w Google (242 opinie)</span>
-      <span class="badge liquid-glass">Własny ogródek</span>
-      <span class="badge liquid-glass">Catering z dowozem</span>
-      <span class="badge liquid-glass">Torty na zamówienie</span>
+      <span class="badge">★ 4,6 w Google (242 opinie)</span>
+      <span class="badge">Własny ogródek</span>
+      <span class="badge">Catering z dowozem</span>
+      <span class="badge">Torty na zamówienie</span>
     </div>
   </div>
 </section>
@@ -710,14 +736,15 @@ const CONFIG = {
   phoneHref: "tel:+48603882356",
   addressLine: "Rokicińska 122A, 95-020 Andrespol",
   mapUrl: "https://www.google.com/maps/search/ZEBRA+Catering%26Restaurant+Rokici%C5%84ska+122A+Andrespol",
-  // demo-data: wideo stockowe (Pexels) na czas mockupu — przy wdrożeniu podmienić na materiał klienta
+  // demo-data: wideo stockowe (Pexels) na czas mockupu — przy wdrożeniu podmienić na materiał klienta;
+  // filtr grayscale w CSS utrzymuje czarno-biały charakter niezależnie od materiału
   videoUrl: "https://videos.pexels.com/video-files/35539956/15056226_1080_1920_30fps.mp4",
   videoShiftY: "6%",
   watermark: "Koncept strony: [TWOJA AGENCJA] — prawdziwa strona w 48 h",
   colors: {
-    "--wegiel": "#101012",
-    "--porcelana": "#F2EDE3",
-    "--swieca": "#E4A94F"
+    "--ivory": "#F5F1E8",
+    "--charcoal": "#262019",
+    "--gold": "#A87E2F"
   }
 };
 
@@ -822,6 +849,7 @@ const CONFIG = {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return;
   document.querySelectorAll(".stripes").forEach(el => {
+    el.style.backgroundSize = "200% 100%";
     el.style.animation = "stripes-drift 14s linear infinite";
   });
 })();
