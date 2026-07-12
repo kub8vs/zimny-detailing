@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEBRA Catering & Restaurant — Andrespol | Przyjęcia, catering, domowe obiady</title>
+<meta name="description" content="Restauracja i catering w Andrespolu pod Łodzią. Przyjęcia okolicznościowe, komunie, jubileusze i konsolacje. Domowa kuchnia, własny ogródek, dowóz. 4,6★ w Google.">
+<meta property="og:title" content="ZEBRA Catering & Restaurant — gotujemy jak w domu, podajemy jak na święto">
+<meta property="og:description" content="Przyjęcia okolicznościowe i catering z dowozem. Andrespol, Rokicińska 122A. Tel. 603 882 356.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F2EDE3'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='%230A0A0B'%3EZ%3C/text%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --wegiel:#101012;
+  --wegiel-2:#16161a;
+  --porcelana:#F2EDE3;
+  --porcelana-60:rgba(242,237,227,.62);
+  --porcelana-40:rgba(242,237,227,.4);
+  --swieca:#E4A94F;
+  --swieca-glow:rgba(228,169,79,.32);
+  --zebra-b:#0A0A0B;
+  --zebra-w:#FFFFFF;
+  --popiol:#9A968C;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Instrument Sans',system-ui,sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--wegiel);
+  color:var(--porcelana);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--swieca);color:var(--zebra-b)}
+img,video{max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+
+/* ---- Liquid glass (ported 1:1 from house template) ---- */
+.liquid-glass{
+  background:rgba(255,255,255,0.01);
+  background-blend-mode:luminosity;
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  border:none;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,0.1);
+  position:relative;
+  overflow:hidden;
+}
+.liquid-glass::before{
+  content:"";
+  position:absolute;inset:0;border-radius:inherit;padding:1.4px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.45) 0%,rgba(255,255,255,0.15) 20%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,0.15) 80%,rgba(255,255,255,0.45) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+/* ---- Signature: zebra hairline stripes ---- */
+.stripes{
+  height:12px;
+  background:repeating-linear-gradient(105deg,var(--porcelana) 0 1px,transparent 1px 10px);
+  opacity:.35;
+  -webkit-mask:linear-gradient(90deg,transparent,#fff 18%,#fff 82%,transparent);
+  mask:linear-gradient(90deg,transparent,#fff 18%,#fff 82%,transparent);
+  background-size:200% 100%;
+}
+@keyframes stripes-drift{from{background-position:0 0}to{background-position:80px 0}}
+
+/* ---- Hero ---- */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100svh;
+  background:#000;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.hero-video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  transform:translateY(6%) scale(1.02);
+  opacity:0;
+  filter:saturate(.92) brightness(.8);
+}
+.hero-fallback{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(60% 45% at 50% 78%,rgba(228,169,79,.24),transparent 70%),
+    radial-gradient(45% 35% at 32% 88%,rgba(196,110,42,.18),transparent 70%),
+    linear-gradient(180deg,#0a0a0b 0%,#141210 55%,#1c1610 100%);
+  animation:ember 9s ease-in-out infinite alternate;
+}
+@keyframes ember{from{opacity:.85}to{opacity:1}}
+.hero-shade{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(6,6,8,.72) 0%,rgba(6,6,8,.35) 42%,rgba(6,6,8,.55) 74%,rgba(6,6,8,.9) 100%);
+}
+
+.nav{position:relative;z-index:20;padding:24px}
+.nav-inner{
+  border-radius:999px;
+  padding:12px 14px 12px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1120px;margin:0 auto;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--zebra-w);color:var(--zebra-b);
+  font-family:var(--font-display);font-weight:600;font-size:22px;
+  display:grid;place-items:center;line-height:1;
+}
+.brand-name{font-weight:600;font-size:17px;letter-spacing:.02em}
+.brand-name small{display:block;font-weight:400;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--porcelana-60)}
+.nav-links{display:none;gap:30px;list-style:none}
+.nav-links a{
+  color:var(--porcelana-60);text-decoration:none;font-size:14px;font-weight:500;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--porcelana)}
+.nav-tel{
+  display:inline-flex;align-items:center;gap:8px;
+  border-radius:999px;padding:10px 20px;
+  color:var(--porcelana);text-decoration:none;font-size:14px;font-weight:600;
+  transition:background .2s;
+}
+.nav-tel:hover{background:rgba(255,255,255,.05)}
+
+.hero-content{
+  position:relative;z-index:10;flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 24px;text-align:center;
+  transform:translateY(-4%);
+}
+.eyebrow{
+  font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--swieca);font-weight:600;margin-bottom:22px;
+}
+h1{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(2.5rem,6.4vw,4.75rem);
+  line-height:1.06;
+  letter-spacing:-.01em;
+  text-wrap:balance;
+  max-width:15ch;
+  margin-bottom:18px;
+}
+h1 em{font-style:italic;color:var(--swieca)}
+.hero-sub{
+  color:var(--porcelana-60);font-size:clamp(.95rem,1.4vw,1.05rem);
+  max-width:52ch;margin:0 auto 34px;
+}
+.hero-actions{width:100%;max-width:520px;display:flex;flex-direction:column;gap:16px;align-items:center}
+.tel-bar{
+  width:100%;
+  border-radius:999px;
+  padding:8px 8px 8px 26px;
+  display:flex;align-items:center;gap:14px;
+  text-decoration:none;
+}
+.tel-bar .tel-label{flex:1;text-align:left;display:flex;flex-direction:column;gap:1px}
+.tel-bar .tel-label span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--porcelana-40)}
+.tel-bar .tel-label strong{font-size:clamp(1.15rem,2.6vw,1.45rem);font-weight:600;letter-spacing:.03em;color:var(--porcelana)}
+.tel-btn{
+  flex:none;width:52px;height:52px;border-radius:999px;
+  background:var(--porcelana);color:var(--zebra-b);
+  display:grid;place-items:center;
+  transition:transform .2s,box-shadow .3s;
+}
+.tel-bar:hover .tel-btn{transform:scale(1.05);box-shadow:0 0 34px var(--swieca-glow)}
+.ghost-btn{
+  display:inline-block;border-radius:999px;padding:13px 30px;
+  color:var(--porcelana);font-size:14px;font-weight:500;text-decoration:none;
+  transition:background .2s;
+}
+.ghost-btn:hover{background:rgba(255,255,255,.05)}
+.hero-proof{
+  margin-top:26px;display:inline-flex;align-items:center;gap:10px;
+  font-size:13.5px;color:var(--porcelana-60);
+}
+.hero-proof .star{color:var(--swieca)}
+.hero-proof strong{color:var(--porcelana)}
+.hero-social{
+  position:relative;z-index:10;
+  display:flex;justify-content:center;gap:16px;padding-bottom:44px;
+}
+.social-btn{
+  width:52px;height:52px;border-radius:999px;
+  display:grid;place-items:center;
+  color:var(--porcelana-60);
+  transition:color .2s,background .2s;
+}
+.social-btn:hover{color:var(--porcelana);background:rgba(255,255,255,.05)}
+
+/* ---- Sections ---- */
+section{padding:96px 24px}
+.wrap{max-width:1120px;margin:0 auto}
+.sec-eyebrow{
+  font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--swieca);font-weight:600;margin-bottom:14px;
+}
+h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.12;letter-spacing:-.01em;
+  text-wrap:balance;margin-bottom:16px;
+}
+.sec-lead{color:var(--porcelana-60);max-width:58ch}
+
+/* pain mirror */
+.mirror{background:var(--wegiel);text-align:center}
+.mirror blockquote{
+  font-family:var(--font-display);font-style:italic;font-weight:400;
+  font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.3;
+  max-width:26ch;margin:0 auto 18px;text-wrap:balance;
+}
+.mirror p{color:var(--porcelana-60);max-width:52ch;margin:0 auto}
+.mirror p strong{color:var(--swieca);font-weight:600}
+
+/* offer cards */
+.offer{background:var(--wegiel-2)}
+.offer-grid{
+  margin-top:52px;display:grid;gap:20px;
+  grid-template-columns:1fr;
+}
+.offer-card{border-radius:22px;padding:30px 28px}
+.offer-card .icon{
+  width:46px;height:46px;border-radius:14px;margin-bottom:20px;
+  display:grid;place-items:center;color:var(--swieca);
+  background:rgba(228,169,79,.09);
+}
+.offer-card h3{font-family:var(--font-display);font-weight:600;font-size:1.3rem;margin-bottom:10px}
+.offer-card ul{list-style:none;margin-top:12px;display:grid;gap:8px}
+.offer-card li{
+  color:var(--porcelana-60);font-size:14.5px;
+  padding-left:18px;position:relative;
+}
+.offer-card li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:8px;height:2px;background:var(--swieca);
+}
+
+/* menu / karta */
+.karta-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
+.karta-grid{margin-top:52px;display:grid;gap:20px;grid-template-columns:1fr}
+.pakiet{border-radius:22px;padding:34px 30px;display:flex;flex-direction:column}
+.pakiet.featured{box-shadow:inset 0 1px 1px rgba(255,255,255,.1),0 0 60px rgba(228,169,79,.07)}
+.pakiet-tag{
+  align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--swieca);border:1px solid rgba(228,169,79,.4);border-radius:999px;
+  padding:5px 12px;margin-bottom:18px;
+}
+.pakiet h3{font-family:var(--font-display);font-weight:600;font-size:1.45rem}
+.pakiet .cena{
+  font-family:var(--font-display);color:var(--swieca);
+  font-size:2rem;font-weight:600;margin:6px 0 4px;
+}
+.pakiet .cena small{font-size:.9rem;color:var(--porcelana-60);font-family:var(--font-body);font-weight:400}
+.pakiet .opis{color:var(--porcelana-60);font-size:14px;margin-bottom:20px}
+.dania{list-style:none;display:grid;gap:9px;margin-top:auto}
+.dania li{
+  display:flex;align-items:baseline;gap:10px;
+  font-size:14.5px;color:var(--porcelana-60);
+}
+.dania li::after{
+  content:"";flex:1;order:2;
+  border-bottom:1px dotted rgba(242,237,227,.22);
+  transform:translateY(-3px);
+}
+.dania li span{order:3;color:var(--porcelana);font-size:13px}
+.karta-note{margin-top:26px;font-size:13px;color:var(--popiol)}
+
+/* reviews */
+.reviews{background:var(--wegiel-2)}
+.rating-plate{
+  display:flex;flex-wrap:wrap;align-items:center;gap:26px;
+  border-radius:22px;padding:30px;margin-top:48px;
+}
+.rating-num{
+  font-family:var(--font-display);font-size:4rem;font-weight:600;line-height:1;
+  color:var(--porcelana);
+}
+.rating-meta{display:flex;flex-direction:column;gap:6px}
+.stars{color:var(--swieca);letter-spacing:3px;font-size:18px}
+.rating-meta p{color:var(--porcelana-60);font-size:14px}
+.review-grid{margin-top:22px;display:grid;gap:20px;grid-template-columns:1fr}
+.review{border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.review p{color:var(--porcelana-60);font-size:14.5px;font-style:italic}
+.review footer{display:flex;align-items:center;gap:12px;margin-top:auto}
+.avatar{
+  width:38px;height:38px;border-radius:999px;flex:none;
+  background:var(--porcelana);color:var(--zebra-b);
+  display:grid;place-items:center;font-weight:600;font-size:15px;
+}
+.review footer div strong{display:block;font-size:14px;color:var(--porcelana)}
+.review footer div span{font-size:12px;color:var(--popiol)}
+
+/* FAQ */
+.faq-list{margin-top:48px;display:grid;gap:14px;max-width:760px}
+.faq-item{border-radius:18px;overflow:hidden}
+.faq-item summary{
+  list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 24px;font-weight:500;font-size:15.5px;
+  color:var(--porcelana);
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .chev{flex:none;transition:transform .25s;color:var(--swieca)}
+.faq-item[open] summary .chev{transform:rotate(180deg)}
+.faq-item div{padding:0 24px 22px;color:var(--porcelana-60);font-size:14.5px;max-width:60ch}
+
+/* contact / footer */
+.contact{background:var(--wegiel-2)}
+.contact-grid{margin-top:48px;display:grid;gap:20px;grid-template-columns:1fr}
+.contact-card{border-radius:22px;padding:28px}
+.contact-card .icon{color:var(--swieca);margin-bottom:14px}
+.contact-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.contact-card p{color:var(--porcelana-60);font-size:14.5px}
+.contact-card a{color:var(--porcelana);text-decoration:none}
+.contact-card a:hover{color:var(--swieca)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.badge{
+  border-radius:999px;padding:9px 18px;font-size:13px;color:var(--porcelana-60);
+}
+.foot{
+  padding:34px 24px 42px;text-align:center;color:var(--popiol);font-size:12.5px;
+}
+.foot .wm{margin-top:8px;color:rgba(242,237,227,.32)}
+.foot .wm a{color:inherit}
+
+/* CTA final */
+.final{odd:1;text-align:center}
+.final .tel-bar{max-width:460px;margin:34px auto 0}
+
+/* reveals */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+:focus-visible{outline:2px solid var(--swieca);outline-offset:3px;border-radius:6px}
+
+@media(max-width:479px){
+  .nav-tel span{display:none}
+  .nav-tel{padding:10px 13px}
+}
+@media(min-width:768px){
+  .nav-links{display:flex}
+  .offer-grid{grid-template-columns:repeat(2,1fr)}
+  .karta-grid{grid-template-columns:repeat(3,1fr)}
+  .review-grid{grid-template-columns:repeat(3,1fr)}
+  .contact-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .hero-video{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <video class="hero-video" id="heroVideo" muted playsinline autoplay preload="auto" aria-hidden="true"></video>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Główna nawigacja">
+    <div class="nav-inner liquid-glass">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">Z</span>
+        <span class="brand-name" id="cfgBrand">ZEBRA<small>Catering &amp; Restaurant</small></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#oferta">Oferta</a></li>
+        <li><a href="#karta">Karta przyjęć</a></li>
+        <li><a href="#opinie">Opinie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <a class="nav-tel liquid-glass" id="navTel" href="tel:+48603882356">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span id="cfgPhoneNav">603 882 356</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <p class="eyebrow">Restauracja · Catering · Andrespol pod Łodzią</p>
+    <h1>Gotujemy jak w&nbsp;domu, podajemy jak <em>na&nbsp;święto</em></h1>
+    <p class="hero-sub">Przyjęcia okolicznościowe, catering z dowozem i domowe obiady.
+      Rosół jak u mamy, schabowy z patelni i ciasta, po których goście proszą o dokładkę.</p>
+
+    <div class="hero-actions">
+      <a class="tel-bar liquid-glass" id="heroTel" href="tel:+48603882356">
+        <span class="tel-label">
+          <span>Zarezerwuj termin przyjęcia</span>
+          <strong id="cfgPhoneHero">603 882 356</strong>
+        </span>
+        <span class="tel-btn" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a class="ghost-btn liquid-glass" href="#karta">Zobacz kartę przyjęć</a>
+    </div>
+
+    <p class="hero-proof">
+      <span class="star" aria-hidden="true">★</span>
+      <span><strong>4,6 / 5</strong> — 242 opinie w Google</span>
+    </p>
+  </div>
+
+  <div class="hero-social">
+    <a class="social-btn liquid-glass" href="#kontakt" aria-label="Facebook — profil ZEBRA (podpięcie przy wdrożeniu)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a class="social-btn liquid-glass" href="#kontakt" aria-label="Instagram — profil ZEBRA (podpięcie przy wdrożeniu)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+    </a>
+    <a class="social-btn liquid-glass" id="mapLink" href="https://www.google.com/maps/search/ZEBRA+Catering%26Restaurant+Rokici%C5%84ska+122A+Andrespol" target="_blank" rel="noopener" aria-label="Zobacz ZEBRA w Mapach Google">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ================= PAIN MIRROR ================= -->
+<section class="mirror" aria-label="Dlaczego ZEBRA">
+  <div class="wrap reveal">
+    <blockquote>„Sala, jedzenie, ciasta, obsługa — a przecież chcesz być gościem na własnej uroczystości."</blockquote>
+    <p>Komunia, jubileusz, urodziny czy konsolacja — <strong>ZEBRA bierze wszystko na siebie.</strong>
+      Ty zajmij się bliskimi, my zajmiemy się stołem.</p>
+  </div>
+  <div class="wrap" style="margin-top:56px"><div class="stripes" aria-hidden="true"></div></div>
+</section>
+
+<!-- ================= OFERTA ================= -->
+<section class="offer" id="oferta">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-eyebrow">Co robimy najlepiej</p>
+      <h2>Jedna kuchnia, cztery powody, żeby ją znać</h2>
+      <p class="sec-lead">Od pełnej organizacji przyjęcia w naszej sali po półmiski dowiezione pod same drzwi.</p>
+    </div>
+
+    <div class="offer-grid">
+      <article class="offer-card liquid-glass reveal">
+        <span class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
+        </span>
+        <h3>Przyjęcia okolicznościowe</h3>
+        <p style="color:var(--porcelana-60);font-size:14.5px">Komunie, urodziny, jubileusze, chrzciny i konsolacje — pod klucz, w naszej sali.</p>
+        <ul>
+          <li>Sala do 60 gości + własny ogródek latem</li><!-- demo-data: pojemność sali do potwierdzenia -->
+          <li>Menu ustalane osobiście, bez sztywnych pakietów</li>
+          <li>Obsługa kelnerska w cenie</li>
+        </ul>
+      </article>
+
+      <article class="offer-card liquid-glass reveal">
+        <span class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+        </span>
+        <h3>Catering z dowozem</h3>
+        <p style="color:var(--porcelana-60);font-size:14.5px">Biesiadowanie w domowych warunkach — przywozimy gotowe, podane „z fantazją".</p>
+        <ul>
+          <li>Półmiski mięs, sałatek i przekąsek</li>
+          <li>Dowóz: Andrespol, Łódź i okolice</li><!-- demo-data: zasięg dowozu do potwierdzenia -->
+          <li>Naczynia i odbiór po przyjęciu</li><!-- demo-data -->
+        </ul>
+      </article>
+
+      <article class="offer-card liquid-glass reveal">
+        <span class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+        </span>
+        <h3>Obiady na miejscu i na wynos</h3>
+        <p style="color:var(--porcelana-60);font-size:14.5px">Codziennie od 12:00 — domowa kuchnia bez gotowania w domu.</p>
+        <ul>
+          <li>Rosół, schabowy, de volaille, kluski śląskie</li>
+          <li>Na miejscu · na wynos · z dostawą</li>
+          <li>Latem stoliki w ogródku</li>
+        </ul>
+      </article>
+
+      <article class="offer-card liquid-glass reveal">
+        <span class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="2"/><path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6"/><path d="M16 13H3"/><path d="M16 17H3"/></svg>
+        </span>
+        <h3>Ciasta, torty i desery</h3>
+        <p style="color:var(--porcelana-60);font-size:14.5px">To o nich goście piszą „palce lizać" — pieczone u nas, z dobrych składników.</p>
+        <ul>
+          <li>Torty na zamówienie, na każdą okazję</li>
+          <li>Ciasta domowe — min. 3 rodzaje na przyjęciu</li>
+          <li>Półmisek owocowy — hit naszej karty</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KARTA PRZYJĘĆ ================= -->
+<section id="karta">
+  <div class="wrap">
+    <div class="karta-head reveal">
+      <div>
+        <p class="sec-eyebrow">Karta przyjęć</p>
+        <h2>Ile kosztuje spokój głowy?</h2>
+        <p class="sec-lead">Ceny orientacyjne — ostateczne menu układamy wspólnie, pod okazję i budżet.</p>
+      </div>
+    </div>
+
+    <!-- demo-data: pakiety i ceny przykładowe, do potwierdzenia z klientem -->
+    <div class="karta-grid">
+      <article class="pakiet liquid-glass reveal">
+        <span class="pakiet-tag">Obiadowy</span>
+        <h3>Domowy</h3>
+        <p class="cena">od 95 zł <small>/ osoba</small></p>
+        <p class="opis">Klasyczny obiad rodzinny w sali lub w ogródku.</p>
+        <ul class="dania">
+          <li>Rosół z domowym makaronem <span>✓</span></li>
+          <li>Schabowy lub de volaille <span>✓</span></li>
+          <li>Kluski śląskie, młoda kapusta, surówki <span>✓</span></li>
+          <li>Kompot i kawa <span>✓</span></li>
+        </ul>
+      </article>
+
+      <article class="pakiet liquid-glass featured reveal">
+        <span class="pakiet-tag">Najczęściej wybierany</span>
+        <h3>Świąteczny</h3>
+        <p class="cena">od 135 zł <small>/ osoba</small></p>
+        <p class="opis">Pełne przyjęcie okolicznościowe — od zupy po tort.</p>
+        <ul class="dania">
+          <li>Dwa dania gorące + bufet zimny <span>✓</span></li>
+          <li>Schab w sosie, dania na półmiskach <span>✓</span></li>
+          <li>3 rodzaje ciast domowych <span>✓</span></li>
+          <li>Półmisek owocowy i tort <span>✓</span></li>
+        </ul>
+      </article>
+
+      <article class="pakiet liquid-glass reveal">
+        <span class="pakiet-tag">Catering</span>
+        <h3>Do domu</h3>
+        <p class="cena">od 45 zł <small>/ osoba</small></p>
+        <p class="opis">Półmiski i garnki pod Twoje drzwi — Ty tylko nakrywasz.</p>
+        <ul class="dania">
+          <li>Półmiski mięs i przekąsek <span>✓</span></li>
+          <li>Sałatki i surówki <span>✓</span></li>
+          <li>Deserki „palce lizać" <span>✓</span></li>
+          <li>Dowóz pod wskazany adres <span>✓</span></li>
+        </ul>
+      </article>
+    </div>
+    <p class="karta-note">Podane ceny są przykładowe (mockup) — dokładną wycenę przygotowujemy telefonicznie w 15 minut.</p>
+  </div>
+</section>
+
+<!-- ================= OPINIE ================= -->
+<section class="reviews" id="opinie">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-eyebrow">Opinie gości</p>
+      <h2>242 rodziny już nam zaufały</h2>
+    </div>
+
+    <div class="rating-plate liquid-glass reveal">
+      <span class="rating-num">4,6</span>
+      <div class="rating-meta">
+        <span class="stars" aria-label="Ocena 4,6 na 5">★★★★★</span>
+        <p>Średnia z 242 opinii w Mapach Google — bez retuszu, pisane po przyjęciach.</p>
+      </div>
+    </div>
+
+    <div class="review-grid">
+      <article class="review liquid-glass reveal">
+        <p>„Bardzo dobre, domowe jedzenie. Rosół, ziemniaki i kluski śląskie, schabowy, de volaille, schab w sosie. 3 rodzaje ciast — czuć, że z dobrej jakości składników."</p>
+        <footer>
+          <span class="avatar" aria-hidden="true">M</span>
+          <div><strong>Marimat</strong><span>Lokalny przewodnik Google · 78 opinii</span></div>
+        </footer>
+      </article>
+      <article class="review liquid-glass reveal">
+        <p>„Cudne miejsce na imprezkę! A jeśli ktoś woli biesiadować w domu — catering z ZEBRY najlepszy na świecie. Deserki «palce lizać», tort…"</p>
+        <footer>
+          <span class="avatar" aria-hidden="true">B</span>
+          <div><strong>Bietka</strong><span>Lokalny przewodnik Google · 53 opinie</span></div>
+        </footer>
+      </article>
+      <article class="review liquid-glass reveal">
+        <p>„Pyszne jedzenie, miła obsługa. Lokal posiada własny ogródek."</p>
+        <footer>
+          <span class="avatar" aria-hidden="true">K</span>
+          <div><strong>Karolina</strong><span>Lokalny przewodnik Google · 20 opinii</span></div>
+        </footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="sec-eyebrow">Częste pytania</p>
+      <h2>Zanim zadzwonisz</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item liquid-glass reveal">
+        <summary>Z jakim wyprzedzeniem rezerwować termin przyjęcia?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div>Weekendy majowe i komunijne potrafią zapełnić się kilka miesięcy wcześniej. Przy mniejszych przyjęciach często wystarczą 2–3 tygodnie — najpewniej po prostu zadzwonić i zapytać o datę.<!-- demo-data --></div>
+      </details>
+      <details class="faq-item liquid-glass reveal">
+        <summary>Dowozicie catering poza Andrespol?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div>Tak — obsługujemy Andrespol, Łódź i okoliczne miejscowości. Przy większych zamówieniach dojedziemy dalej, koszt dowozu ustalamy przy wycenie.<!-- demo-data --></div>
+      </details>
+      <details class="faq-item liquid-glass reveal">
+        <summary>Czy przygotujecie menu wegetariańskie albo dla dzieci?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div>Tak. Menu układamy indywidualnie — wersje wegetariańskie, dania dla dzieci i alergie zgłaszasz przy rezerwacji, resztą zajmuje się kuchnia.</div>
+      </details>
+      <details class="faq-item liquid-glass reveal">
+        <summary>Ile osób pomieści sala?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div>Komfortowo do ok. 60 gości, a latem dodatkowo własny ogródek. Przy większych uroczystościach zaproponujemy catering na Twoją salę.<!-- demo-data: pojemność do potwierdzenia --></div>
+      </details>
+      <details class="faq-item liquid-glass reveal">
+        <summary>W jakich godzinach jesteście otwarci?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div>Restauracja otwiera się codziennie o 12:00. Zamówienia na wynos i terminy przyjęć najlepiej ustalać telefonicznie: 603 882 356.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT / CTA ================= -->
+<section class="contact final" id="kontakt">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <p class="sec-eyebrow">Rezerwacje i wyceny</p>
+      <h2>Porozmawiajmy o Twojej okazji</h2>
+      <p class="sec-lead" style="margin:0 auto">Jeden telefon: data, liczba gości, menu — wycena od ręki.</p>
+      <a class="tel-bar liquid-glass" id="footTel" href="tel:+48603882356">
+        <span class="tel-label">
+          <span>Codziennie od 12:00</span>
+          <strong id="cfgPhoneFoot">603 882 356</strong>
+        </span>
+        <span class="tel-btn" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card liquid-glass reveal">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Adres</h3>
+        <p><a href="https://www.google.com/maps/search/ZEBRA+Catering%26Restaurant+Rokici%C5%84ska+122A+Andrespol" target="_blank" rel="noopener">Rokicińska 122A<br>95-020 Andrespol</a></p>
+      </div>
+      <div class="contact-card liquid-glass reveal">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Godziny</h3>
+        <p>Codziennie od 12:00<br>Przyjęcia — także poza godzinami</p><!-- demo-data: pełny grafik do potwierdzenia -->
+      </div>
+      <div class="contact-card liquid-glass reveal">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h3>Telefon</h3>
+        <p><a href="tel:+48603882356">603 882 356</a><br>Na miejscu · Na wynos · Dostawa</p>
+      </div>
+    </div>
+
+    <div class="badges reveal">
+      <span class="badge liquid-glass">★ 4,6 w Google (242 opinie)</span>
+      <span class="badge liquid-glass">Własny ogródek</span>
+      <span class="badge liquid-glass">Catering z dowozem</span>
+      <span class="badge liquid-glass">Torty na zamówienie</span>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap"><div class="stripes" aria-hidden="true" style="margin-bottom:26px"></div></div>
+  <p>© <span id="year"></span> ZEBRA Catering &amp; Restaurant · Rokicińska 122A, 95-020 Andrespol</p>
+  <p class="wm" id="watermark">Koncept strony: [TWOJA AGENCJA] — prawdziwa strona w 48 h</p>
+</footer>
+
+<script>
+/* ======================================================================
+   CONFIG — jedyne miejsce edycji przy rebrandingu mockupu.
+   ====================================================================== */
+const CONFIG = {
+  brandName: "ZEBRA",
+  brandSub: "Catering & Restaurant",
+  phoneDisplay: "603 882 356",
+  phoneHref: "tel:+48603882356",
+  addressLine: "Rokicińska 122A, 95-020 Andrespol",
+  mapUrl: "https://www.google.com/maps/search/ZEBRA+Catering%26Restaurant+Rokici%C5%84ska+122A+Andrespol",
+  // demo-data: wideo stockowe (Pexels) na czas mockupu — przy wdrożeniu podmienić na materiał klienta
+  videoUrl: "https://videos.pexels.com/video-files/35539956/15056226_1080_1920_30fps.mp4",
+  videoShiftY: "6%",
+  watermark: "Koncept strony: [TWOJA AGENCJA] — prawdziwa strona w 48 h",
+  colors: {
+    "--wegiel": "#101012",
+    "--porcelana": "#F2EDE3",
+    "--swieca": "#E4A94F"
+  }
+};
+
+(function applyConfig(){
+  const root = document.documentElement;
+  Object.entries(CONFIG.colors).forEach(([k,v]) => root.style.setProperty(k,v));
+  document.getElementById("cfgBrand").innerHTML =
+    CONFIG.brandName + "<small>" + CONFIG.brandSub + "</small>";
+  ["cfgPhoneNav","cfgPhoneHero","cfgPhoneFoot"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = CONFIG.phoneDisplay;
+  });
+  ["navTel","heroTel","footTel"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = CONFIG.phoneHref;
+  });
+  document.getElementById("mapLink").href = CONFIG.mapUrl;
+  document.getElementById("watermark").textContent = CONFIG.watermark;
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+
+/* ======================================================================
+   Pętla wideo hero — system fade oparty o requestAnimationFrame
+   (bez przejść CSS), zgodnie z house template:
+   500 ms fade-in na starcie/po zapętleniu, 500 ms fade-out gdy do końca
+   zostaje 0.55 s; fadingOutRef blokuje ponowne wyzwolenie z timeupdate;
+   po "ended": opacity 0 -> po 100 ms reset do 0 s, play i fade-in;
+   każdy nowy fade anuluje poprzednią klatkę animacji i startuje
+   z bieżącej wartości opacity.
+   ====================================================================== */
+(function heroVideoLoop(){
+  const video = document.getElementById("heroVideo");
+  if (!video) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced || !CONFIG.videoUrl) { video.remove(); return; }
+
+  video.src = CONFIG.videoUrl;
+  video.style.transform = "translateY(" + CONFIG.videoShiftY + ") scale(1.02)";
+
+  const FADE_MS = 500;
+  const OUT_THRESHOLD = 0.55;
+  let rafId = null;
+  let fadingOutRef = false;
+
+  function fadeTo(target){
+    if (rafId) cancelAnimationFrame(rafId);
+    const from = parseFloat(video.style.opacity || "0");
+    const start = performance.now();
+    function step(now){
+      const t = Math.min((now - start) / FADE_MS, 1);
+      video.style.opacity = String(from + (target - from) * t);
+      if (t < 1) rafId = requestAnimationFrame(step);
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  video.addEventListener("playing", () => {
+    if (!fadingOutRef) fadeTo(1);
+  });
+  video.addEventListener("timeupdate", () => {
+    if (!video.duration || fadingOutRef) return;
+    if (video.duration - video.currentTime <= OUT_THRESHOLD) {
+      fadingOutRef = true;
+      fadeTo(0);
+    }
+  });
+  video.addEventListener("ended", () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    video.style.opacity = "0";
+    setTimeout(() => {
+      video.currentTime = 0;
+      const p = video.play();
+      fadingOutRef = false;
+      if (p && p.catch) p.catch(() => {});
+      fadeTo(1);
+    }, 100);
+  });
+  video.addEventListener("error", () => video.remove());
+
+  const p = video.play();
+  if (p && p.catch) p.catch(() => {});
+})();
+
+/* ---- Scroll reveals ---- */
+(function reveals(){
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    els.forEach(el => el.classList.add("in"));
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ---- Zebra stripes drift (signature) ---- */
+(function stripesDrift(){
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) return;
+  document.querySelectorAll(".stripes").forEach(el => {
+    el.style.animation = "stripes-drift 14s linear infinite";
+  });
+})();
+</script>
+</body>
+</html>
